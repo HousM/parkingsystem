@@ -66,4 +66,5 @@ public class Ticket {
 	public void setDiscount(boolean isDiscountPrice) {
 		this.isDiscount = isDiscountPrice;
 	}
+
 }

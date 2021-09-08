@@ -45,4 +45,5 @@ public class FareCalculatorService {
 		}
 		ticket.setPrice(price);
 	}
+
 }

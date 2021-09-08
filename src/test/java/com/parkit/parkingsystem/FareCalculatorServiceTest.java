@@ -183,4 +183,5 @@ public class FareCalculatorServiceTest {
 		fareCalculatorService.calculateFare(ticket);
 		assertEquals((0.5 * Fare.BIKE_RATE_PER_HOUR), ticket.getPrice());
 	}
+
 }
