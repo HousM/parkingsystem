@@ -34,5 +34,4 @@ public class InputReaderUtil {
 			throw e;
 		}
 	}
-
 }

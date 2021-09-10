@@ -36,6 +36,7 @@ public class ParkingSpotDAO {
 			dataBaseConfig.closeConnection(con);
 		}
 		return result;
+
 	}
 
 	public boolean updateParking(ParkingSpot parkingSpot) {

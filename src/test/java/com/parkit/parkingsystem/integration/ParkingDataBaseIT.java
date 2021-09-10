@@ -80,4 +80,5 @@ public class ParkingDataBaseIT {
 		assertNotNull(ticket.getOutTime());
 		assertEquals(1, numberOfNextAvailableSlot);
 	}
+
 }
