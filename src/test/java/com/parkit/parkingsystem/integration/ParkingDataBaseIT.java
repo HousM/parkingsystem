@@ -24,7 +24,6 @@ import com.parkit.parkingsystem.util.InputReaderUtil;
 @ExtendWith(MockitoExtension.class)
 public class ParkingDataBaseIT {
 
-	private static final String VehicleRegNumber = null;
 	private static DataBaseTestConfig dataBaseTestConfig = new DataBaseTestConfig();
 	private static ParkingSpotDAO parkingSpotDAO;
 	private static TicketDAO ticketDAO;
@@ -40,6 +39,7 @@ public class ParkingDataBaseIT {
 		ticketDAO = new TicketDAO();
 		ticketDAO.dataBaseConfig = dataBaseTestConfig;
 		dataBasePrepareService = new DataBasePrepareService();
+
 	}
 
 	@BeforeEach
@@ -59,16 +59,17 @@ public class ParkingDataBaseIT {
 		ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
 		parkingService.processIncomingVehicle();
 		// TODO: check that a ticket is actually saved in DB and Parking table is
-		// updated with availability : equals pour number, getout time et intime et id
-		String vehicleRegNumber = "ABCDEF";
-		Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);
+		// updated with availability
+//		String vehicleRegNumber = "ABCDEF";
+		Ticket ticket = ticketDAO.getTicket("ABCDEF");
 		double price = 0;
-		boolean saved = ticketDAO.isSaved(VehicleRegNumber);
+		boolean saved = ticketDAO.saveTicket(ticket);
 		// THEN
 		assertEquals(true, saved);
 		assertEquals(ticket.getPrice(), price);
 		assertEquals(ticket.getVehicleRegNumber(), "ABCDEF");
 		assertEquals(2, parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR));
+
 	}
 
 	@Test
@@ -80,7 +81,7 @@ public class ParkingDataBaseIT {
 		// TODO: check that the fare generated and out time are populated correctly in
 		// the database
 
-		Ticket ticket = ticketDAO.getTicket(VehicleRegNumber);
+		Ticket ticket = ticketDAO.getTicket("ABCDEF");
 		int numberOfNextAvailableSlot = parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR);
 
 		assertNotNull(ticket.getOutTime());
@@ -96,7 +97,7 @@ public class ParkingDataBaseIT {
 		String vehicleRegNumber = "ABCDEF";
 		Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);
 		double price = 0;
-		boolean saved = ticketDAO.isSaved(VehicleRegNumber);
+		boolean saved = ticketDAO.saveTicket(ticket);
 		// THEN
 		assertEquals(true, saved);
 		assertEquals(ticket.getPrice(), price);
@@ -112,8 +113,8 @@ public class ParkingDataBaseIT {
 
 		// TODO: check that the fare generated and out time are populated correctly in
 		// the database
-
-		Ticket ticket = ticketDAO.getTicket(VehicleRegNumber);
+		String vehicleRegNumber = "ABCDEF";
+		Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);
 		int numberOfNextAvailableSlot = parkingSpotDAO.getNextAvailableSlot(ParkingType.BIKE);
 
 		assertNotNull(ticket.getOutTime());

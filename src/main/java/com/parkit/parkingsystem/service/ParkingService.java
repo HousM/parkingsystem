@@ -40,7 +40,7 @@ public class ParkingService {
 				LocalDateTime inTime = LocalDateTime.now(ZoneId.systemDefault()).minusHours(1);
 				Ticket ticket = new Ticket();
 				// ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
-				// ticket.setId(ticketID);
+//				ticket.getId();
 				if (ticketDAO.isRecurring(vehicleRegNumber)) {
 					System.out.println("Welcome back! 5% discount applied");
 					ticket.setDiscount(true);
@@ -55,7 +55,8 @@ public class ParkingService {
 				ticketDAO.saveTicket(ticket);
 				System.out.println("Generated Ticket and saved in DB");
 				System.out.println("Please park your vehicle in spot number:" + parkingSpot.getId());
-				System.out.println("Recorded in-time for vehicle number:" + vehicleRegNumber + " is:" + inTime);
+				System.out.println(
+						"Recorded in-time for vehicle number:" + vehicleRegNumber + " is:" + ticket.getInTime());
 			}
 		} catch (Exception e) {
 			logger.error("Unable to process incoming vehicle", e);
@@ -119,11 +120,13 @@ public class ParkingService {
 
 				System.out.println("Please pay the parking fare:" + ticket.getPrice());
 				System.out.println(
-						"Recorded out-time for vehicle number:" + ticket.getVehicleRegNumber() + " is:" + outTime);
+						"Recorded out-time for vehicle number:" + ticket.getVehicleRegNumber() + " is:"
+								+ ticket.getOutTime());
 			} else {
 				System.out.println("Unable to update ticket information. Error occurred");
 			}
 		} catch (Exception e) {
+
 			logger.error("Unable to process exiting vehicle", e);
 		}
 	}
