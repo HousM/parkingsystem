@@ -17,8 +17,8 @@ public class FareCalculatorService {
 		LocalDateTime outHour = ticket.getOutTime();
 
 		// TODO: Some tests are failing here. Need to check if this logic is correct
-		long duration = ChronoUnit.SECONDS.between(inHour, outHour) / 3600;
-		if (duration >= 30 * 60) {
+		long duration = ChronoUnit.SECONDS.between(inHour, outHour) / 60;
+		if (duration >= 30) {
 			switch (ticket.getParkingSpot().getParkingType()) {
 			case CAR: {
 				ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);

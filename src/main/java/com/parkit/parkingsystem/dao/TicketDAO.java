@@ -122,4 +122,27 @@ public class TicketDAO {
 		return false;
 	}
 
+	public boolean isSaved(String vehicleRegNumber) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			con = dataBaseConfig.getConnection();
+			ps = con.prepareStatement(DBConstants.GET_SAVED_TICKET);
+			ps.setString(1, vehicleRegNumber);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				dataBaseConfig.closePreparedStatement(ps);
+				return true;
+			}
+		} catch (Exception ex) {
+			logger.error("Error fetching recurring vehicle ", ex);
+		} finally {
+			dataBaseConfig.closeResultSet(rs);
+			dataBaseConfig.closePreparedStatement(ps);
+			dataBaseConfig.closeConnection(con);
+		}
+		return false;
+	}
+
 }
