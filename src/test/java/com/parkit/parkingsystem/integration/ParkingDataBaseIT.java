@@ -46,7 +46,6 @@ public class ParkingDataBaseIT {
 		ticketDAO = new TicketDAO();
 		ticketDAO.dataBaseConfig = dataBaseTestConfig;
 		dataBasePrepareService = new DataBasePrepareService();
-
 	}
 
 	@BeforeEach
@@ -105,8 +104,8 @@ public class ParkingDataBaseIT {
 
 	@Test
 	public void testParkingABike() throws Exception {
-//		// TODO: check that a ticket is actually saved in DB and Parking table is
-//		// updated with availability
+		// TODO: check that a ticket is actually saved in DB and Parking table is
+		// updated with availability
 
 		when(inputReaderUtil.readSelection()).thenReturn(2);
 		when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("BCDEFG");
@@ -127,7 +126,8 @@ public class ParkingDataBaseIT {
 	public void testParkingLotExitBike() throws Exception {
 		testParkingABike();
 
-//		// TODO: check that the fare generated and out time are populated correctly in
+		// TODO: check that the fare generated and out time are populated correctly in
+		// the database
 
 		// GIVEN
 		when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("BCDEFG2");

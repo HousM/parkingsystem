@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class InputReaderUtil {
-
 	private static Scanner scan = new Scanner(System.in);
 	private static final Logger logger = LogManager.getLogger("InputReaderUtil");
 

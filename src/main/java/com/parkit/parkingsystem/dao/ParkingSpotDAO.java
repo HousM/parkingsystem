@@ -17,6 +17,7 @@ public class ParkingSpotDAO {
 	public DataBaseConfig dataBaseConfig = new DataBaseConfig();
 
 	public int getNextAvailableSlot(ParkingType parkingType) {
+
 		Connection con = null;
 		int result = -1;
 		try {

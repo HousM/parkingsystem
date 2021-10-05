@@ -14,7 +14,6 @@ import com.parkit.parkingsystem.model.Ticket;
 import com.parkit.parkingsystem.util.InputReaderUtil;
 
 public class ParkingService {
-
 	private static final Logger logger = LogManager.getLogger("ParkingService");
 
 	private static FareCalculatorService fareCalculatorService = new FareCalculatorService();

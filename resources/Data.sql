@@ -44,6 +44,7 @@ create table ticket(
  IN_TIME DATETIME NOT NULL,
  OUT_TIME DATETIME,
   DISCOUNT boolean = false,
+  
  FOREIGN KEY (PARKING_NUMBER)
  REFERENCES parking(PARKING_NUMBER));
 
